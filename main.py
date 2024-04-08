@@ -20,3 +20,6 @@ def main():
     while True:
         do_backup()
         time.sleep(config.get('interval'))
+
+if __name__ == '__main__':
+    main()
