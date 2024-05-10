@@ -3,7 +3,13 @@ import json
 import time
 import os
 
-logging.basicConfig(level=logging.INFO, filename='info.log', format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(
+    level=logging.INFO,
+    filename='info.log',
+    format='%(asctime)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
 config = json.load(open('config.json'))
 
 def setup_folder():
@@ -11,15 +17,21 @@ def setup_folder():
         os.makedirs('backups')
 
 def do_backup():
-    command = f"bw export --output backups/export-{time.strftime('%Y-%m-%d_%H-%M-%S')}.json --format json --session {config.get('session')}"
+    command = (
+        f"bw export --output backups/export-{time.strftime('%Y-%m-%d_%H-%M-%S')}.json "
+        f"--format json --session {config.get('session')}"
+    )
     output = os.popen(command).read()
     logging.info(output)
 
 def main():
     setup_folder()
     while True:
-        do_backup()
-        time.sleep(config.get('interval'))
+        try:
+            do_backup()
+            time.sleep(config.get('interval'))
+        except Exception as e:
+            logging.error(f"An error occurred: {e}")
 
 if __name__ == '__main__':
     main()
