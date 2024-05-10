@@ -1,6 +1,6 @@
-# bw-backup
-simple bitwarden backup script, intended for personal use on my raspberry pi (in case my VPS hosting bitwarden goes BOOM)
-## how to use?
-you need the bitwarden cli client installed. login to your account, and get the session key. then put it in config.json, and run the main.py! it will run the backup script every 24 hours, and save the backups in the `backups` folder.
+# Bitwarden Backup Tool (R-Pi)
+Backup Bitwarden tool for passwords and etc. Incase my VPS with Bitwarden goes boom (Back-up tool for R-Pi)
+## How to use?
+Before you start, ensure you have the Bitwarden command-line interface (CLI) client installed. Log in to your Bitwarden account using the CLI and retrieve the session key. Next, open the config.json file and paste the session key into it. Then, simply run the main.py script! It automatically initiates a backup process every 24 hours and stores the backups in a folder named backups.
 
-*if you're on a raspberry pi, you need to use the NPM client as there's no binaries for ARM/ARM64 (`npm install -g @bitwarden/cli`)*
+*IF you are using R-PI you need to use the NPM client as there's no binaries for ARM/ARM64 (`npm install -g @bitwarden/cli`)*
